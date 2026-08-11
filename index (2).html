@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Digital Closet</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================= -->
+    <!-- MAIN CLOSET -->
+    <!-- ========================= -->
+
+    <div id="closet">
+
+        <h1>👗 My Digital Closet</h1>
+
+
+        <button
+            class="add-button"
+            onclick="openCategoryMenu()"
+        >
+            + Add Clothing
+        </button>
+
+
+        <button
+            class="outfit-button"
+            onclick="openOutfitBuilder()"
+        >
+            ✨ Build an Outfit
+        </button>
+
+    <button
+    	class="saved-outfits-button"
+    	onclick="openSavedOutfits()"
+	>
+    	    💾 My Saved Outfits
+    </button>
+
+        <!-- Hoodies / Jackets -->
+
+        <section>
+
+            <h2>🧥 Hoodies / Jackets</h2>
+
+            <div
+                id="hoodies"
+                class="clothing-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Tops -->
+
+        <section>
+
+            <h2>👚 Tops</h2>
+
+            <div
+                id="tops"
+                class="clothing-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Bottoms -->
+
+        <section>
+
+            <h2>👖 Bottoms</h2>
+
+            <div
+                id="bottoms"
+                class="clothing-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Shoes -->
+
+        <section>
+
+            <h2>👟 Shoes</h2>
+
+            <div
+                id="shoes"
+                class="clothing-grid"
+            ></div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- CATEGORY MENU -->
+    <!-- ========================= -->
+
+    <div
+        id="categoryMenu"
+        class="menu-overlay"
+    >
+
+        <div class="menu">
+
+            <h2>What are you adding?</h2>
+
+
+            <button
+                onclick="selectCategory('hoodies')"
+            >
+                🧥 Hoodie / Jacket
+            </button>
+
+
+            <button
+                onclick="selectCategory('tops')"
+            >
+                👚 Top
+            </button>
+
+
+            <button
+                onclick="selectCategory('bottoms')"
+            >
+                👖 Bottoms
+            </button>
+
+
+            <button
+                onclick="selectCategory('shoes')"
+            >
+                👟 Shoes
+            </button>
+
+
+            <button
+                onclick="closeCategoryMenu()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- EDIT CLOTHING MENU -->
+    <!-- ========================= -->
+
+    <div
+        id="editMenu"
+        class="menu-overlay"
+    >
+
+        <div class="menu">
+
+            <h2>Edit Clothing</h2>
+
+
+            <label for="itemName">
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="itemName"
+                placeholder="Example: White T-Shirt"
+            >
+
+
+            <label for="itemColor">
+                Color
+            </label>
+
+            <input
+                type="text"
+                id="itemColor"
+                placeholder="Example: White"
+            >
+
+
+            <label for="itemTags">
+                Tags
+            </label>
+
+            <input
+                type="text"
+                id="itemTags"
+                placeholder="Example: casual, school, summer"
+            >
+
+
+            <label class="favorite-label">
+
+                <input
+                    type="checkbox"
+                    id="itemFavorite"
+                >
+
+                ⭐ Favorite
+
+            </label>
+
+
+            <button
+                onclick="saveItemChanges()"
+            >
+                Save
+            </button>
+
+
+            <button
+                onclick="deleteSelectedItem()"
+            >
+                🗑️ Delete
+            </button>
+
+
+            <button
+                onclick="closeEditMenu()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- PHOTO INPUT -->
+    <!-- ========================= -->
+
+    <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        style="display: none;"
+    >
+
+
+
+    <!-- ========================= -->
+    <!-- OUTFIT BUILDER -->
+    <!-- ========================= -->
+
+    <div
+        id="outfitBuilder"
+        class="outfit-screen"
+    >
+
+        <h2>✨ Build an Outfit</h2>
+
+        <p>
+            Pick pieces from your closet.
+        </p>
+
+
+        <!-- Hoodie / Jacket -->
+
+        <div class="outfit-section">
+
+            <h3>
+                🧥 Hoodie / Jacket
+            </h3>
+
+            <div
+                id="outfit-hoodies"
+                class="outfit-item"
+                onclick="chooseOutfitItem('hoodies')"
+            >
+                Tap to choose
+            </div>
+
+        </div>
+
+
+        <!-- Top -->
+
+        <div class="outfit-section">
+
+            <h3>
+                👚 Top
+            </h3>
+
+            <div
+                id="outfit-tops"
+                class="outfit-item"
+                onclick="chooseOutfitItem('tops')"
+            >
+                Tap to choose
+            </div>
+
+        </div>
+
+
+        <!-- Bottoms -->
+
+        <div class="outfit-section">
+
+            <h3>
+                👖 Bottoms
+            </h3>
+
+            <div
+                id="outfit-bottoms"
+                class="outfit-item"
+                onclick="chooseOutfitItem('bottoms')"
+            >
+                Tap to choose
+            </div>
+
+        </div>
+
+
+        <!-- Shoes -->
+
+        <div class="outfit-section">
+
+            <h3>
+                👟 Shoes
+            </h3>
+
+            <div
+                id="outfit-shoes"
+                class="outfit-item"
+                onclick="chooseOutfitItem('shoes')"
+            >
+                Tap to choose
+            </div>
+
+        </div>
+
+
+        <!-- SAVE OUTFIT -->
+
+        <button
+            onclick="saveCurrentOutfit()"
+        >
+            💾 Save Outfit
+        </button>
+
+
+        <!-- BACK -->
+
+        <button
+            onclick="closeOutfitBuilder()"
+        >
+            ← Back to Closet
+        </button>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- VISUAL OUTFIT PICKER -->
+    <!-- ========================= -->
+
+    <div
+        id="outfitPicker"
+        class="menu-overlay"
+    >
+
+        <div class="menu outfit-picker-menu">
+
+            <h2 id="pickerTitle">
+                Choose an Item
+            </h2>
+
+
+            <div
+                id="outfitChoices"
+                class="outfit-choices"
+            ></div>
+
+
+            <button
+                class="cancel-button"
+                onclick="closeOutfitPicker()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+<!-- ========================= -->
+<!-- SAVED OUTFITS -->
+<!-- ========================= -->
+
+<div
+    id="savedOutfitsScreen"
+    class="outfit-screen"
+>
+
+    <h2>💾 My Saved Outfits</h2>
+
+<div class="outfit-filter">
+
+    <label for="outfitTagFilter">
+        🏷️ Filter by tag:
+    </label>
+
+    <select
+        id="outfitTagFilter"
+        onchange="filterSavedOutfits()"
+    >
+
+        <option value="all">
+            All Outfits
+        </option>
+
+    </select>
+
+</div>
+
+    <div
+        id="savedOutfitsList"
+        class="saved-outfits-list"
+    ></div>
+
+    <button
+        onclick="closeSavedOutfits()"
+    >
+        ← Back to Closet
+    </button>
+
+</div>
+
+<!-- ========================= -->
+<!-- SAVED OUTFIT DETAILS -->
+<!-- ========================= -->
+
+<div
+    id="savedOutfitDetails"
+    class="menu-overlay"
+>
+
+    <div class="menu">
+
+        <h2 id="savedOutfitTitle">
+            Outfit
+        </h2>
+
+        <p id="savedOutfitTags"></p>
+
+
+        <button
+            onclick="viewSavedOutfit()"
+        >
+            👀 View Outfit
+        </button>
+
+
+        <button
+            onclick="editSavedOutfit()"
+        >
+            ✏️ Edit Name / Tags
+        </button>
+
+
+        <button
+            onclick="deleteSavedOutfit()"
+        >
+            🗑️ Delete Outfit
+        </button>
+
+
+        <button
+            onclick="closeSavedOutfitDetails()"
+        >
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- EDIT SAVED OUTFIT -->
+<!-- ========================= -->
+
+<div
+    id="editSavedOutfitMenu"
+    class="menu-overlay"
+>
+
+    <div class="menu">
+
+        <h2>Edit Outfit</h2>
+
+
+        <label for="savedOutfitName">
+            Outfit Name
+        </label>
+
+        <input
+            type="text"
+            id="savedOutfitName"
+            placeholder="Example: First Day of School"
+        >
+
+
+        <label for="savedOutfitTags">
+            Tags
+        </label>
+
+        <input
+            type="text"
+            id="savedOutfitTagsInput"
+            placeholder="school, casual, summer"
+        >
+
+
+        <button
+            onclick="saveSavedOutfitChanges()"
+        >
+            Save Changes
+        </button>
+
+
+        <button
+            onclick="closeEditSavedOutfit()"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- BOTTOM NAVIGATION -->
+<!-- ========================= -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goToCloset()">
+        👗<br>
+        Closet
+    </button>
+
+    <button onclick="goToOutfitBuilder()">
+        ✨<br>
+        Outfits
+    </button>
+
+    <button onclick="goToSavedOutfits()">
+        💾<br>
+        Saved
+    </button>
+
+</nav>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
